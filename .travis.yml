@@ -8,3 +8,16 @@ before_install:
 script:
   - docker run debiasej/docker-react-learning npm run test -- --coverage
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react-learning"
+  env: "DockerReactLearning-env"
+  bucket_name: "elasticbeanstalk-us-east-2-545284110187"
+  bucket_path: "docker-react-learning"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
+
